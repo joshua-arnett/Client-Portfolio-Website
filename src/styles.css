@@ -1,0 +1,35 @@
+html, body, #root { height: 100%; margin: 0; }
+
+.app-container {
+  display: flex;
+  height: 100vh;   /* viewport-height container */
+  overflow: hidden; /* prevent body scroll */
+}
+
+.sidebar {
+  width: 260px;
+  flex: 0 0 260px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: #a2beff;
+  color: #c92222;
+}
+
+.sidebar .logo img { max-width: 140px; height: auto; }
+
+.sidebar .app-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sidebar .social { margin-top: auto; /* pushes social to bottom */ }
+
+.main-page {
+  flex: 1 1 auto;
+  overflow: auto; /* makes main scrollable */
+  padding: 2rem;
+  background: #f8fafc;
+}
+
