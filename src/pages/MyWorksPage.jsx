@@ -1,5 +1,6 @@
 import { projectData } from "../projectData";
 
+// Shows the portfolio project gallery.
 export default function MyWorksPage() {
     return (
         <>

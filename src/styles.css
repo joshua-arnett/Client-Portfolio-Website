@@ -1,9 +1,11 @@
+/* Base page layout and reset styles */
 html, body, #root { height: 100%; margin: 0; }
 
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
+/* Main app shell: sidebar on the left, content and footer stacked on the right */
 .app-container {
   display: flex;
   height: 100vh;
@@ -19,7 +21,7 @@ html, body, #root { height: 100%; margin: 0; }
 }
 
 /* 
------- Sidebar CSS ------
+------ Sidebar and mobile menu styles ------
 */
 
 .sidebar {
@@ -179,7 +181,7 @@ a {
 
 
 /* 
------- Main Page CSS ------
+------ Main page and project gallery styles ------
 */
 
 body {
@@ -198,7 +200,7 @@ h1 {
   padding: 2rem;
 }
 
-/* 1. Define the Grid Container */
+/* Grid layout for the project cards */
 .project-collection {
   display: grid;
   width: 100%;
@@ -209,7 +211,7 @@ h1 {
   gap: 16px;
 }
 
-/* 2. Restrict the size of the container boxes */
+/* Individual project card styling */
 .project {
   width: 100%;
   max-width: 100%;
@@ -219,7 +221,7 @@ h1 {
   font-family: sans-serif;
 }
 
-/* 3. Scale and fit the images */
+/* Make project images fill the card without stretching */
 .project img {
   width: 100%;
   height: 100%;

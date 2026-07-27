@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
+// Sidebar navigation links for the main pages.
 export default function Navigation() {
   return (
     <nav className="app-nav">
