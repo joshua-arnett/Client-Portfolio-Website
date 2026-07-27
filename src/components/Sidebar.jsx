@@ -1,39 +1,57 @@
+import { useState } from 'react';
 import logo1 from '../assets/logo1.webp';
 import '../styles.css';
-import { NavLink, Link } from 'react-router-dom';
-import { FaInstagram, FaWhatsapp } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
-
-function Navigation() {
-  return (
-    <nav className="app-nav">
-      <NavLink to="/home" className={({ isActive }) => isActive ? 'home-link active-nav-link' : 'home-link'}>Home</NavLink>
-      <NavLink to="/works" className={({ isActive }) => isActive ? 'works-link active-nav-link' : 'works-link'}>My Works</NavLink>
-      <NavLink to="/about" className={({ isActive }) => isActive ? 'about-link active-nav-link' : 'about-link'}>About Me</NavLink>
-    </nav>
-  );
-}
+import { FaBars, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { HiOutlineMail } from 'react-icons/hi';
+import Navigation from './Navigation';
+import Menu from './Menu';
 
 export default function Sidebar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+
+  function openMenu() {
+    setIsClosing(false);
+    setIsMenuOpen(true);
+  }
+
+  function closeMenu() {
+    setIsClosing(true);
+    window.setTimeout(() => {
+      setIsMenuOpen(false);
+      setIsClosing(false);
+    }, 250);
+  }
+
   return (
-    <aside className="sidebar">
-      <div className="logo">
-        <img src={logo1} alt="Site logo" />
-      </div>
+    <>
+      <aside className="sidebar">
+        <div className="logo">
+          <img src={logo1} alt="Site logo" />
+        </div>
 
-      <Navigation />
+        <button className="mobile-menu-toggle" onClick={openMenu} aria-label="Open menu">
+          <FaBars />
+        </button>
 
-      <div className="social-container">
-        <Link to="https://www.whatsapp.com/" className="social whatsapp">
-          <FaWhatsapp />
-        </Link>
-        <Link to="https://www.instagram.com/" className="social instagram">
-          <FaInstagram />
-        </Link>
-        <Link to="https://www.gmail.com/" className="social email">
-          <HiOutlineMail />
-        </Link>
-      </div>
-    </aside>
+        <div className="sidebar-content">
+          <Navigation />
+
+          <div className="social-container">
+            <a href="https://www.whatsapp.com/" className="social whatsapp" target="_blank" rel="noreferrer">
+              <FaWhatsapp />
+            </a>
+            <a href="https://www.instagram.com/" className="social instagram" target="_blank" rel="noreferrer">
+              <FaInstagram />
+            </a>
+            <a href="https://www.gmail.com/" className="social email" target="_blank" rel="noreferrer">
+              <HiOutlineMail />
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <Menu isOpen={isMenuOpen} isClosing={isClosing} onClose={closeMenu} />
+    </>
   );
 }
