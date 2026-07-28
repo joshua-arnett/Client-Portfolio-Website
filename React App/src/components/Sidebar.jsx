@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo1 from '../assets/logo1.webp';
+import logo from '../assets/logo1.webp';
 import '../styles.css';
 import { FaBars, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
@@ -27,7 +27,7 @@ export default function Sidebar() {
     <>
       <aside className="sidebar">
         <div className="logo">
-          <img src={logo1} alt="Site logo" />
+          <img src={logo} alt="Site logo" />
         </div>
 
         <button className="mobile-menu-toggle" onClick={openMenu} aria-label="Open menu">
