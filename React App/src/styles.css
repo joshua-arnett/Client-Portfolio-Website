@@ -198,7 +198,7 @@ h1 {
 }
 
 .works-back-arrow-header-wrapper {
-  border-bottom: 2px solid black;
+  border-bottom: 1.7px solid black;
 }
 
 .works-back-arrow-link {
@@ -265,7 +265,6 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   background-color: transparent;
 }
 
@@ -273,18 +272,20 @@ h1 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Make project images fill the card without stretching */
+.project-image-wrapper img,
+.project-image-wrapper.collection img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
 .project-image-wrapper.collection:hover {
   transform: scale(1.03);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* 0 X-offset, 0 Y-offset, 15px blur, semi-transparent black */
-}
-
-/* Make project images fill the card without stretching */
-.project img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-  border-radius: 5px;
 }
 
 /* Caption styling - aligned neatly below image */
