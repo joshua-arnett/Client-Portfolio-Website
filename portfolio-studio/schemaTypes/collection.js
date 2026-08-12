@@ -13,11 +13,12 @@ export const collection = defineType({
     }),
     defineField({
         name: 'slug',
-        title: 'Slug (no need to edit)',
+        title: 'Slug (press "Generate" button)',
         type: 'slug',
         options: {
             source: 'title'
-        }
+        },
+        validation: (Rule) => Rule.required()
     }),
     defineField({
         name: 'mainImage',
@@ -25,6 +26,7 @@ export const collection = defineType({
         type: 'image',
         options: { hotspot: true },
         description: 'Upload an image directly from your computer.',
+        validation: (Rule) => Rule.required()
         }),
     defineField({
         name: 'layout',
@@ -38,17 +40,12 @@ export const collection = defineType({
             layout: 'radio', // Displays as radio buttons instead of a dropdown
         },
         initialValue: 'portrait', // Default selection
+        validation: (Rule) => Rule.required()
     }),
     defineField({
         name: 'description',
         title: 'Description for alt text (Optional)',
         type: 'text',
     }),
-    defineField({
-        name: 'projects',
-        title: 'Projects in this collection',
-        type: 'array',
-        of: [{ type: 'reference', to: [{ type: 'project' }] }]
-    })
   ],
 });

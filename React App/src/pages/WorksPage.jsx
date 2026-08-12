@@ -11,8 +11,14 @@ export default function WorksPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // This page serves two views:
+    // 1) /works -> list every collection card
+    // 2) /works/:slug -> show one collection and its projects
+    // The data-fetch shape changes depending on whether a slug exists in the URL.
     setLoading(true);
 
+    // Query A: fetch one collection by its slug if the route includes a slug.
+    // Query B: fetch all collections if the route is just /works.
     const query = slug
       ? `*[_type == "collection" && slug.current == $slug][0]{
           _id,
@@ -20,15 +26,8 @@ export default function WorksPage() {
           slug,
           description,
           layout,
-          mainImage,
-          projects[]->{
-            _id,
-            caption,
-            description,
-            layout,
-            mainImage
-          }
-        }` // If query contains slug, we query all the projects from the specific collection the slug belongs to
+          mainImage
+        }`
       : `*[_type == "collection"]{
           _id,
           title,
@@ -36,19 +35,51 @@ export default function WorksPage() {
           description,
           layout,
           mainImage
-        }`; // If query does not contain slug, we query all the collections
+        }`;
+
+    // This second query runs only in the detail view. Once a collection is found,
+    // we fetch every project whose collection reference matches that collection slug.
+    const projectsQuery = slug
+      ? `*[_type == "project" && collection->slug.current == $slug]{
+          _id,
+          caption,
+          description,
+          layout,
+          mainImage
+        }`
+      : null;
 
     client
-      .fetch(query, slug ? { slug } : {}) // 
+      .fetch(query, slug ? { slug } : {})
       .then((data) => {
         if (slug) {
+          // Detail view: store the selected collection first.
           setCollection(data);
-        } else {
-          setCollections(data || []);
+
+          // If the collection exists, fetch its projects and attach them in the next step.
+          if (data) {
+            return client.fetch(projectsQuery, { slug });
+          }
+
+          // If no collection matches the slug, return an empty array.
+          return [];
+        }
+
+        // List view: store all collection cards.
+        setCollections(data || []);
+        setLoading(false);
+        return [];
+      })
+      .then((projectData) => {
+        if (slug) {
+          // Merge the fetched projects onto the collection object so the view can map over
+          // collection.projects and render the project gallery inside the chosen collection.
+          setCollection((current) => current ? { ...current, projects: projectData || [] } : null);
         }
         setLoading(false);
       })
       .catch((err) => {
+        // If anything fails, log the error and stop the loading state.
         console.error('Failed to fetch collections from Sanity:', err);
         setLoading(false);
       });
