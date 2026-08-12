@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { client, urlFor } from '../sanityClient';
+import { FaArrowLeftLong } from "react-icons/fa6";
+
 
 export default function WorksPage() {
   const { slug } = useParams(); // Obtains slug from react route
@@ -65,7 +67,14 @@ export default function WorksPage() {
 
     return (
       <div className="project-wrapper">
-        <h1>{collection.title}</h1>
+        <div className="works-back-arrow-header-wrapper">
+          <Link to="/works" className="works-back-arrow-link">
+            <FaArrowLeftLong className="works-back-arrow" />
+            <h1>{collection.title}</h1>
+          </Link>
+        </div>
+
+
         <div className="project-collection">
           {collection.projects?.map((project) => {
             const imageSrc = project.mainImage
@@ -99,6 +108,7 @@ export default function WorksPage() {
   // If we queried all collections
   return (
     <div className="project-wrapper">
+      <h1>My Works:</h1>
       <div className="project-collection">
         {collections.map((collectionItem) => {
           const imageSrc = collectionItem.mainImage

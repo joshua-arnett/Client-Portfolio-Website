@@ -193,6 +193,22 @@ h1 {
   font-family: sans-serif;
 }
 
+.works-back-arrow-header-wrapper {
+  border-bottom: 2px solid black;
+}
+
+.works-back-arrow-link {
+  display: inline-flex;
+  cursor: pointer;
+  padding-inline: 5px;
+  align-items: center;
+}
+
+.works-back-arrow {
+  margin-right: 15px;
+  font-size: clamp(20px, 1.6vw, 100px);
+}
+
 .main-page {
   flex: 1 1 auto;
   min-width: 0;
@@ -246,20 +262,22 @@ h1 {
   background-color: transparent;
 }
 
-.project.landscape img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+.project-image-wrapper.collection {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-image-wrapper.collection:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* 0 X-offset, 0 Y-offset, 15px blur, semi-transparent black */
 }
 
 /* Make project images fill the card without stretching */
 .project img {
   width: 100%;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 /* Caption styling - aligned neatly below image */
