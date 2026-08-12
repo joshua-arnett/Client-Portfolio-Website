@@ -108,7 +108,7 @@ export default function WorksPage() {
   // If we queried all collections
   return (
     <div className="project-wrapper">
-      <h1>My Works:</h1>
+      <h1 className='my-works-header'>My Works:</h1>
       <div className="project-collection">
         {collections.map((collectionItem) => {
           const imageSrc = collectionItem.mainImage
