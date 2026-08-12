@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { client, urlFor } from '../sanityClient';
 
-export default function MyWorksPage() {
+export default function CollectionsPage() {
   const [collection, setCollections] = useState([]);
   const [loading, setLoading] = useState(true);
 
