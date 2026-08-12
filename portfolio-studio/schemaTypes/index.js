@@ -1,3 +1,4 @@
 import { project } from './project';
+import { collection } from './collection';
 
-export const schemaTypes = [project];
+export const schemaTypes = [project, collection];

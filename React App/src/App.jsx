@@ -2,8 +2,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
-import MyWorksPage from './pages/MyWorksPage';
+import WorksPage from './pages/WorksPage';
 import Footer from './components/Footer'
+import CollectionsPage from './pages/CollectionsPage';
 import './styles.css';
 
 // Main app layout: sidebar on the left, page content in the middle, footer below.
@@ -18,7 +19,8 @@ export default function App() {
             <Route path="/" element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/works" element={<MyWorksPage />} />
+            <Route path="/collections" element={<CollectionsPage />} />
+            <Route path="/works" element={<WorksPage />} />
           </Routes>
         </main>
         <Footer />

@@ -1,19 +1,27 @@
 import { defineField, defineType } from 'sanity';
 
-export const project = defineType({
-  name: 'project',
-  title: 'Project',
+export const collection = defineType({
+  name: 'collection',
+  title: 'Collection',
   type: 'document',
   fields: [
     defineField({
-      name: 'caption',
-      title: 'Project Caption',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
+        name: 'title',
+        title: 'Collection Title',
+        type: 'string',
+        validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+        name: 'slug',
+        title: 'Slug (no need to edit)',
+        type: 'slug',
+        options: {
+            source: 'title'
+        }
     }),
     defineField({
         name: 'mainImage',
-        title: 'Uploaded Image File',
+        title: 'Cover Image File',
         type: 'image',
         options: { hotspot: true },
         description: 'Upload an image directly from your computer.',
@@ -32,9 +40,15 @@ export const project = defineType({
         initialValue: 'portrait', // Default selection
     }),
     defineField({
-      name: 'description',
-      title: 'Description for alt text (Optional)',
-      type: 'text',
+        name: 'description',
+        title: 'Description for alt text (Optional)',
+        type: 'text',
+    }),
+    defineField({
+        name: 'projects',
+        title: 'Projects in this collection',
+        type: 'array',
+        of: [{ type: 'reference', to: [{ type: 'project' }] }]
     })
   ],
 });
