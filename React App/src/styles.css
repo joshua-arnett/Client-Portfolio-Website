@@ -5,99 +5,86 @@ html, body, #root { height: 100%; margin: 0; }
   box-sizing: border-box;
 }
 
-/* Main app shell: sidebar on the left, content and footer stacked on the right */
 .app-container {
-  display: flex;
+  display: grid;
+  /* three rows: header (topbar), main page that fills remaining space, and footer */
+  grid-template-rows: auto 1fr auto;
   height: 100vh;
   overflow: hidden;
 }
 
-.app-shell {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-width: 0;
-  height: 100%;
-}
-
 /* 
------- Sidebar and mobile menu styles ------
+------ Topbar and mobile menu styles ------
 */
 
-.sidebar {
-  flex: none;
-  width: clamp(115px, 20vw, 400px);
+.topbar {
   display: flex;
-  flex-direction: column;
-  padding: clamp(10px, 2vw, 24px);
-  background-color: rgb(186, 186, 186);
-  border-right: 1px solid rgb(171, 171, 171);
-  border-radius: 0 5px 5px 0;
+  flex: none;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 8px clamp(10px, 2vw, 20px);
+  background-color: rgb(195, 195, 195);
+  border-bottom: 1px solid rgb(171, 171, 171);
+  border-radius: 0 0 5px 5px;
 }
 
-.sidebar .logo img {
+.topbar .logo {
+  width: 155px;
+  height: 60px;
+}
+
+.topbar .logo img {
   display: block;
   height: auto;
   max-height: 100%;
   width: 100%;
   max-width: 100%;
-  margin-bottom: 50px;
-  object-fit: contain;
 }
 
-.sidebar .logo {
-  width: 100%;
-  max-width: 100%;
-}
-
-.sidebar-content {
+/* topbar navigation links */
+.topbar .app-nav {
   display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.sidebar .app-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin: 20px 0 20px 10px;
+  gap: clamp(0.7rem, 1.5vw, 1.4rem);
 }
 
 a {
-  font-size: clamp(15px, 1.5vw, 100px);
+  font-size: clamp(14px, 1.5vw, 25px);
   font-family: sans-serif;
   text-decoration: none;
-  color: rgb(41, 29, 20);
+  color: rgb(26, 18, 12);
 }
 
-.sidebar .app-nav a.active-nav-link {
-  text-decoration: underline;
-  text-decoration-color: rgba(60, 43, 29, 0.4);
-  text-decoration-style: dotted;
-  text-decoration-thickness: 3px;
-  font-weight: 600;
+.topbar .app-nav a.active-nav-link {
+  color: rgb(0, 0, 0);
+  font-weight: 1000;
 }
 
-.sidebar .social-container {
+/* all social media icons, collectively */
+.topbar .social-container {
   display: flex;
   gap: 8px;
-  margin-top: auto; /* pushes social to bottom */
-  margin-inline: auto;
+  margin: 5px 5px 0 0;
 }
 
+/* each individual social media icon */
 .social {
   flex-shrink: 2;
 }
 
+/* each individual social media icon image */
 .social svg {
   font-size: 24px;
 }
 
+/* email icon image */
 .email svg {
-  font-size: 28px;
-  padding-bottom: 2px;
+  font-size: 26px;
+  /* padding-bottom: 1px; */
 }
 
+/* Mobile menu hamburger button*/
 .mobile-menu-toggle {
   display: none;
   border: none;
@@ -105,9 +92,10 @@ a {
   color: rgb(41, 29, 20);
   font-size: 24px;
   cursor: pointer;
-  padding: 0;
+  padding-inline: 7px;
 }
 
+/* mobile overlay is the area outside the mobile panel */
 .mobile-menu-overlay {
   position: fixed;
   inset: 0;
@@ -134,7 +122,7 @@ a {
   display: flex;
   flex-direction: column;
   width: min(90vw, 320px);
-  min-height: 50vh;
+  min-height: 42vh;
   background: rgb(255, 255, 255);
   border-radius: 12px;
   padding: 1.25rem;
@@ -194,7 +182,7 @@ h1 {
 }
 
 .my-works-header {
-  margin-bottom: 45px;
+  margin-bottom: 35px;
 }
 
 .works-back-arrow-header-wrapper {
@@ -217,27 +205,26 @@ h1 {
   flex: 1 1 auto;
   width: 100%;
   min-width: 0;
+  min-height: 0; /* allow flex child to shrink and let overflow work */
   overflow: auto; /* makes main scrollable */
   padding: 2rem;
 }
 
 .project-wrapper {
+  display: grid;
   width: 100%;
   max-width: 100%;
-  margin: 0 auto;
-  padding: 16px;
+  justify-content: center;
 }
 
 /* Grid layout for the project cards */
 .project-collection {
   display: grid;
-  width: 100%;
-  max-width: calc(100% - 2rem); /* keep it inside main-page padding */
-  margin: 20px auto 0;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  justify-items: center;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-content: center; /* center the track set so items sit in the middle */
   grid-auto-flow: dense;
-  gap: 18px;
+  gap: 32px;
+  padding-inline: 1rem;
 }
 
 /* Individual project card styling */
@@ -246,7 +233,7 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 100%; /* allow item to size to content so justify-items centers it */
   max-width: 100%;
   min-width: 0;
   height: 100%; /* Keeps cards equal height per row */
@@ -293,30 +280,33 @@ h1 {
 
 /* Caption styling - aligned neatly below image */
 .project-caption {
-  margin-top: 8px;
+  margin-top: 5px;
   font-size: 0.95rem;
   color: #333;
 }
 
 .footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
   font-family: sans-serif;
-  padding: 1.15rem 2rem;
+  padding-right: 1.5rem;
   color: rgb(41, 29, 20);
   background-color: transparent;
-  text-align: right;
 }
 
 
 @media (max-width: 1100px) {
   .project-collection {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     padding: 8px;
   }
 }
 
 @media (max-width: 700px) {
   .project-collection {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr))
   }
   .project-wrapper {
     padding: 6px;
@@ -326,44 +316,44 @@ h1 {
   .project.landscape {
     grid-column: span 1;
   }
+  .topbar .app-nav{
+    font-size: 10px;
+  }
+  /* each individual social media icon image */
+  .social svg {
+    font-size: 21px;
+  }
+
+  /* email icon image */
+  .email svg {
+    font-size: 23px;
+    /* padding-bottom: 1px; */
+  }
 }
 
 @media (max-width: 500px) {
+  .project-collection {
+    grid-template-columns: 1fr;
+  }
   .project-wrapper {
     padding: 0px;
   }
-  .app-container {
-    flex-direction: column;
-    height: auto;
-    min-height: 100vh;
-    overflow-y: auto;
-  }
-  .app-shell {
-    height: auto;
+
+  /* hide nav and socials on small screens so only logo + menu remain */
+  .topbar .app-nav,
+  .topbar .social-container {
+    display: none;
   }
   .main-page {
-    overflow: visible;
+    overflow: auto;      /* scroll inside main area */
+    min-height: 0;       /* allow grid children to shrink correctly */
   }
-  .sidebar {
-    flex-direction: row;
-    align-items: center;
+  .topbar {
     justify-content: space-between;
     width: 100%;
     height: 70px;
     padding: 0.75rem 1rem;
     border-radius: 0;
-  }
-  .sidebar .logo {
-    width: auto;
-    max-width: 120px;
-    margin-bottom: 0;
-  }
-  .sidebar .logo img {
-    margin-bottom: 0;
-    max-height: 44px;
-  }
-  .sidebar-content {
-    display: none;
   }
   .mobile-menu-toggle {
     display: inline-flex;
