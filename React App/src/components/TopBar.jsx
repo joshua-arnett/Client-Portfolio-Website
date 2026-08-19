@@ -6,7 +6,7 @@ import { HiOutlineMail } from 'react-icons/hi';
 import Navigation from './Navigation';
 import Menu from './Menu';
 
-export default function Sidebar() {
+export default function Topbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
@@ -25,7 +25,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <aside className="sidebar">
+      <div className="topbar">
         <div className="logo">
           <img src={logo} alt="Site logo" />
         </div>
@@ -34,22 +34,20 @@ export default function Sidebar() {
           <FaBars />
         </button>
 
-        <div className="sidebar-content">
-          <Navigation />
+        <Navigation />
 
-          <div className="social-container">
-            <a href="https://www.whatsapp.com/" className="social whatsapp" target="_blank" rel="noreferrer">
-              <FaWhatsapp />
+        <div className="social-container">
+          <a href="https://www.whatsapp.com/" className="social whatsapp" target="_blank" rel="noreferrer">
+            <FaWhatsapp />
+          </a>
+          <a href="https://www.instagram.com/" className="social instagram" target="_blank" rel="noreferrer">
+            <FaInstagram />
+          </a>
+          <a href="https://www.gmail.com/" className="social email" target="_blank" rel="noreferrer">
+            <HiOutlineMail />
             </a>
-            <a href="https://www.instagram.com/" className="social instagram" target="_blank" rel="noreferrer">
-              <FaInstagram />
-            </a>
-            <a href="https://www.gmail.com/" className="social email" target="_blank" rel="noreferrer">
-              <HiOutlineMail />
-            </a>
-          </div>
         </div>
-      </aside>
+      </div>
 
       <Menu isOpen={isMenuOpen} isClosing={isClosing} onClose={closeMenu} />
     </>
