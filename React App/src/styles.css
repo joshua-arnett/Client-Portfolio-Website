@@ -78,12 +78,6 @@ a {
   font-size: 24px;
 }
 
-/* email icon image */
-.email svg {
-  font-size: 26px;
-  /* padding-bottom: 1px; */
-}
-
 /* Mobile menu hamburger button*/
 .mobile-menu-toggle {
   display: none;
@@ -281,9 +275,11 @@ h1 {
 
 /* Caption styling - aligned neatly below image */
 .project-caption {
-  margin-top: 5px;
+  margin: 0 4px;
   font-size: 0.95rem;
   color: #333;
+  line-height: 1; /* Define the text height */
+  min-height: 1em; /* Reserve exactly one line of space */
 }
 
 .footer {
@@ -312,23 +308,12 @@ h1 {
   .project-wrapper {
     padding: 6px;
   }
-
-  /* Reset landscape cards to span only 1 column on mobile */
-  .project.landscape {
-    grid-column: span 1;
-  }
   .topbar .app-nav{
     font-size: 10px;
   }
   /* each individual social media icon image */
   .social svg {
     font-size: 21px;
-  }
-
-  /* email icon image */
-  .email svg {
-    font-size: 23px;
-    /* padding-bottom: 1px; */
   }
 }
 
@@ -338,6 +323,10 @@ h1 {
   }
   .project-wrapper {
     padding: 0px;
+  }
+  /* Reset landscape cards to span only 1 column on mobile */
+  .project.landscape {
+    grid-column: span 1;
   }
 
   /* hide nav and socials on small screens so only logo + menu remain */
