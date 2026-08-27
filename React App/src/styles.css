@@ -19,9 +19,8 @@ html, body, #root { height: 100%; margin: 0; }
 */
 
 .topbar {
-  display: flex;
-  flex: none;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   width: 100%;
   height: 10vh;
@@ -31,12 +30,13 @@ html, body, #root { height: 100%; margin: 0; }
   border-radius: 0 0 5px 5px;
 }
 
-.topbar .logo {
+.topbar .logo-wrapper {
+  justify-self: start;
   width: clamp(150px, 18vw, 270px);
   height: auto;
 }
 
-.topbar .logo img {
+.topbar .logo-wrapper img {
   display: block;
   height: 100%;
   max-height: 100%;
@@ -46,6 +46,7 @@ html, body, #root { height: 100%; margin: 0; }
 
 /* topbar navigation links */
 .topbar .app-nav {
+  justify-self: center;
   display: flex;
   gap: clamp(0.7rem, 1.5vw, 1.4rem);
 }
@@ -63,6 +64,7 @@ a {
 
 /* all social media icons, collectively */
 .topbar .social-container {
+  justify-self: end;
   display: flex;
   gap: 8px;
   margin: 5px 5px 0 0;
@@ -409,7 +411,7 @@ h1 {
     text-align: center;
   }
 
-  .topbar .logo {
+  .topbar .logo-wrapper {
     width: 50vw;
   }
   /* hide nav and socials on small screens so only logo + menu remain */

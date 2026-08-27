@@ -26,7 +26,7 @@ export default function Topbar() {
   return (
     <>
       <div className="topbar">
-        <div className="logo">
+        <div className="logo-wrapper">
           <img src={logo} alt="Site logo" />
         </div>
 
