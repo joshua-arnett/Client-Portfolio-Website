@@ -334,7 +334,7 @@ h1 {
 }
 
 /* When the image wrapper gets the active class, it slides into place */
-#first-homepage-image {
+#first-homepage-image.active {
   opacity: 1;
   transform: translateX(0);
 }
