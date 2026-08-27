@@ -301,13 +301,13 @@ h1 {
 
 /*  ----------- HOME PAGE ----------- */
 
-#home-page {
+#homepage {
   display: grid;
   grid-template-columns: 1fr;
   gap: 100px;
 }
 
-.home-page-header {
+.homepage-header {
   font-size: clamp(25px, 3vw, 50px);
 }
 
@@ -323,6 +323,34 @@ h1 {
 .homepage-image-wrapper {
   max-width: 100%;
   overflow: contain;
+}
+
+/* The container starts hidden and pushed 100px to the right */
+#first-homepage-image {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* When the image wrapper gets the active class, it slides into place */
+#first-homepage-image {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* The container starts hidden and pushed 100px to the right */
+#second-homepage-image {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* When the image wrapper gets the active class, it slides into place */
+#second-homepage-image.active {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .homepage-image {
