@@ -4,6 +4,15 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Gabriella Giovanni's Portfolio</title>
+        <style>
+            #first-homepage-image, #second-homepage-image {
+                opacity: 0;
+                transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1),
+                    transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+            }
+            #first-homepage-image { transform: translateX(100px); }
+            #second-homepage-image { transform: translateX(-100px); }
+        </style>
     </head>
     <body>
         <div id="root"></div>

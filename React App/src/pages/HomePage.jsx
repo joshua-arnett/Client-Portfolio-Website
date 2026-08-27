@@ -23,14 +23,16 @@ export default function HomePage() {
         }, {
             // Measure visibility against .main-page instead of the browser viewport.
             root: scrollContainer,
-            rootMargin: "0px",
-            // Trigger once at least 40% of the image is visible.
+            // Trigger when the image reaches the upper half of the scroll area.
+            // This keeps the second image from activating during the first paint
+            // when it is visible only near the bottom of the initial layout.
+            rootMargin: "0px 0px 0px 0px",
             threshold: 0.4
         });
 
-        // The wrappers, rather than the img elements, receive the animation class.
-        const targetImages = document.querySelectorAll(".slide-in-image");
-        targetImages.forEach((image) => observer.observe(image));
+        // querySelectorAll returns a NodeList, which supports forEach.
+        const slideElements = document.querySelectorAll(".slide");
+        slideElements.forEach((element) => observer.observe(element));
 
         // Stop observing when HomePage is removed or before the effect runs again.
         return () => observer.disconnect();
@@ -43,14 +45,14 @@ export default function HomePage() {
                     <h1 className="homepage-header">Hey, I'm Gabriella.</h1>
                     <p>I do this, this, and this. This text is a placeholder for how the real thing will look when fully implemented.</p>
                 </div>
-                <div className="homepage-image-wrapper slide-in-image" id="first-homepage-image">
-                    <img className="homepage-image" src={homepageImage1} alt="" />
+                <div className="homepage-image-wrapper slide" id="first-homepage-image">
+                    <img className="homepage-image" src={homepageImage1} width="365px" height="547px" />
                 </div>
-                <div className="homepage-image-wrapper slide-in-image" id="second-homepage-image">
-                    <img className="homepage-image" src={homepageImage2} alt="" />
+                <div className="homepage-image-wrapper slide" id="second-homepage-image">
+                    <img className="homepage-image" src={homepageImage2} width="365px" height="547px" />
                 </div>
                 <div id="second-paragraph">
-                    <h1 className="home-page-header">Graphic Design. Done better.</h1>
+                    <h1 className="homepage-header">Graphic Design. Done better.</h1>
                     <p>I do this, this, and this. This text is a placeholder for how the real thing will look when fully implemented.</p>
                 </div>
             </div>

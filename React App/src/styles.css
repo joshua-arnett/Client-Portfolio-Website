@@ -325,30 +325,25 @@ h1 {
   overflow: contain;
 }
 
-/* The container starts hidden and pushed 100px to the right */
+/* The containers start hidden */
+#first-homepage-image, #second-homepage-image {
+  opacity: 0;
+  transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* The first container starts pushed 100px to the right */
 #first-homepage-image {
-  opacity: 0;
   transform: translateX(100px);
-  transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1), 
-              transform 2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* When the image wrapper gets the active class, it slides into place */
-#first-homepage-image.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* The container starts hidden and pushed 100px to the right */
+/* The second container starts pushed 100px to the left */
 #second-homepage-image {
-  opacity: 0;
   transform: translateX(-100px);
-  transition: opacity 2s cubic-bezier(0.25, 1, 0.5, 1), 
-              transform 2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* When the image wrapper gets the active class, it slides into place */
-#second-homepage-image.active {
+/* When a slide gets the active class, it moves into place */
+:is(#first-homepage-image, #second-homepage-image).active {
   opacity: 1;
   transform: translateX(0);
 }
