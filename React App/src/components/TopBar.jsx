@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from '../assets/logo1.webp';
+import logo from '../assets/logo.png';
 import '../styles.css';
 import { FaBars, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
