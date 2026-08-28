@@ -176,6 +176,15 @@ h1 {
   font-size: clamp(20px, 1.5vw, 90px);
 }
 
+.main-page {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 0; /* allow flex child to shrink and let overflow work */
+  overflow: auto; /* makes main scrollable */
+  padding: 2rem;
+}
+
 /* ----------- WORKS PAGE ----------- */
 
 .my-works-header {
@@ -197,15 +206,6 @@ h1 {
 .works-back-arrow {
   margin-right: 15px;
   font-size: clamp(20px, 1.6vw, 100px);
-}
-
-.main-page {
-  flex: 1 1 auto;
-  width: 100%;
-  min-width: 0;
-  min-height: 0; /* allow flex child to shrink and let overflow work */
-  overflow: auto; /* makes main scrollable */
-  padding: 2rem;
 }
 
 .project-wrapper {
@@ -307,6 +307,11 @@ h1 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 100px;
+  min-width: 0;
+}
+
+#client-section {
+  min-width: 0;
 }
 
 .homepage-header {
@@ -323,8 +328,10 @@ h1 {
 }
 
 .homepage-image-wrapper {
-  max-width: 100%;
   overflow: contain;
+  justify-self: center;
+  max-width: 100%;
+  height: auto;
 }
 
 /* The containers start hidden */
@@ -359,11 +366,66 @@ h1 {
   text-align: right;
 }
 
-.homepage-image-wrapper {
-  justify-self: center;
-  max-width: 100%;
-  height: auto;
+#client-header {
+  text-align: center;
 }
+
+/* Scrollable brand logo container */
+.brand-row {
+  /* Align cards horizontally in a single row */
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  /* Handle explicit structural spacing between cards */
+  gap: 16px;
+  padding: 20px;
+  
+  /* Overflow mechanics */
+  /* Add horizontal scrollbar when content spills over */
+  overflow-x: auto;
+  /* Strictly prevents vertical bouncing/clipping */
+  overflow-y: hidden;
+  
+  /* Smoothly lock cards to alignment grids when user finishes scrolling */
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  /* Enable natural, fluid scrolling on mobile touch screens */
+  -webkit-overflow-scrolling: touch;
+
+  /* Hide scrollbars while preserving horizontal scrolling */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbars in Chrome, Safari, and Opera */
+.brand-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* The brand logo cards within the container */
+.brand-item {
+  /* Do not grow, do not shrink, lock width exactly to 250px */
+  flex: 0 0 250px;
+  
+  aspect-ratio: 16 / 9;         /* 8. Establishes clean Netflix-style widescreen bounds */
+  border-radius: 6px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.13); /* 0 X-offset, 0 Y-offset, 15px blur, semi-transparent black */
+  overflow: hidden;
+
+  /* Anchor point matching the parent's snap rule */
+  scroll-snap-align: start;
+}
+
+.brand-item img {
+  width: 100%;
+  height: 100%;
+
+  /* Crop and scale graphic assets safely within frames */
+  object-fit: contain;
+}
+
 
 /*  ----------- MEDIA QUERIES ----------- */
 
