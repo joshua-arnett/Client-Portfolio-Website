@@ -32,8 +32,9 @@ html, body, #root { height: 100%; margin: 0; }
 
 .topbar .logo-wrapper {
   justify-self: start;
-  width: clamp(150px, 18vw, 270px);
+  width: clamp(180px, 18vw, 270px);
   height: auto;
+  margin-right: 20px;
 }
 
 .topbar .logo-wrapper img {
@@ -410,7 +411,7 @@ h1 {
   flex: 0 0 250px;
   
   aspect-ratio: 16 / 9;         /* 8. Establishes clean Netflix-style widescreen bounds */
-  border-radius: 6px;
+  border-radius: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.13); /* 0 X-offset, 0 Y-offset, 15px blur, semi-transparent black */
   overflow: hidden;
 
@@ -486,6 +487,7 @@ h1 {
     min-height: 0;       /* allow grid children to shrink correctly */
   }
   .topbar {
+    grid-template-columns: 1fr auto;
     justify-content: space-between;
     width: 100%;
     height: 70px;
@@ -494,7 +496,5 @@ h1 {
   }
   .mobile-menu-toggle {
     display: inline-flex;
-    align-items: center;
-    justify-content: center;
   }
 }
