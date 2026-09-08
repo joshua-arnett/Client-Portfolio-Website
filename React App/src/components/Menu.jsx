@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { HiOutlineMail } from 'react-icons/hi';
+import { TbBrandLinkedin } from "react-icons/tb";
 
 export default function Menu({ isOpen, isClosing, onClose }) {
   return (
@@ -17,13 +18,16 @@ export default function Menu({ isOpen, isClosing, onClose }) {
         </nav>
 
         <div className="mobile-social-container">
-          <a href="https://www.whatsapp.com/" target="_blank" rel="noreferrer" onClick={onClose}>
+          <a href="https://wa.me/6287731777090" target="_blank" rel="noreferrer" onClick={onClose}>
             <FaWhatsapp />
           </a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" onClick={onClose}>
+          <a href="https://www.instagram.com/gabriellagiovanni/" target="_blank" rel="noreferrer" onClick={onClose}>
             <FaInstagram />
           </a>
-          <a href="https://www.gmail.com/" target="_blank" rel="noreferrer" onClick={onClose}>
+          <a href="https://www.linkedin.com/in/gabriella-giovanni-b511791b7/" target="_blank" rel="noreferrer" onClick={onClose}>
+            <TbBrandLinkedin />
+          </a>
+          <a href="mailto:by.gabriellagiovanni@gmail.com" target="_blank" rel="noreferrer" onClick={onClose}>
             <HiOutlineMail />
           </a>
         </div>
