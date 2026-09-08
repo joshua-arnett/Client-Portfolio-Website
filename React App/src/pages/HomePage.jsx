@@ -204,9 +204,11 @@ export default function HomePage() {
             </div>
             <div id="latest-work-section">
                 <h1 className="homepage-header">Check Out My Latest Work</h1>
+                <p>Placeholder text</p>
             </div>
             <div id="reviews-section">
                 <h1 className="homepage-header">Reviews</h1>
+                <p>Placeholder text  --- User A</p>
             </div>
         </div>
     )
