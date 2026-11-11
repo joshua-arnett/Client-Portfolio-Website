@@ -90,82 +90,57 @@ export default function WorksPage() {
     return <div className="project-wrapper">Loading { slug ? "projects" : "collections"}...</div>;
   }
 
-  // If we queried works within a specific collection
-  if (slug) {
-    if (!collection) {
-      return <div className="project-wrapper">Collection not found.</div>;
-    }
+  if (slug && !collection) {
+    return <div className="project-wrapper">Collection not found.</div>;
+  }
 
-    return (
-      <div className="project-wrapper">
+  const isCollectionDetail = Boolean(slug);
+  const items = isCollectionDetail ? collection.projects ?? [] : collections;
+
+  return (
+    <div className="project-wrapper">
+      {isCollectionDetail ? (
         <div className="works-back-arrow-header-wrapper">
           <Link to="/works" className="works-back-arrow-link">
             <FaArrowLeftLong className="works-back-arrow" />
             <h1>{collection.title}</h1>
           </Link>
         </div>
+      ) : (
+        <h1 className="my-works-header">My Works:</h1>
+      )}
 
-
-        <div className="project-collection">
-          {collection.projects?.map((project) => {
-            const imageSrc = project.mainImage
-              ? urlFor(project.mainImage).url()
-              : null;
-
-            return (
-              <div
-                key={project._id}
-                className={
-                  project.layout === 'portrait' ? 'project' : 'project landscape'
-                }
-              >
-                <div className="project-image-wrapper">
-                  {imageSrc && (
-                    <img
-                      src={imageSrc}
-                      alt={project.description || project.caption}
-                    />
-                  )}
-                </div>
-                <p className="project-caption">{project.caption}</p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-
-  // If we queried all collections
-  return (
-    <div className="project-wrapper">
-      <h1 className='my-works-header'>My Works:</h1>
       <div className="project-collection">
-        {collections.map((collectionItem) => {
-          const imageSrc = collectionItem.mainImage
-            ? urlFor(collectionItem.mainImage).url()
+        {items.map((item) => {
+          const imageSrc = item.mainImage
+            ? urlFor(item.mainImage).width(800).format('webp').quality(85).url()
             : null;
+          const image = (
+            <div className={`project-image-wrapper${isCollectionDetail ? '' : ' collection'}`}>
+              {imageSrc && (
+                <img
+                  src={imageSrc}
+                  alt={item.description || (isCollectionDetail ? item.caption : item.title)}
+                />
+              )}
+            </div>
+          );
 
           return (
             <div
-              key={collectionItem._id}
+              key={item._id}
               className={
-                collectionItem.layout === 'portrait'
-                  ? 'project'
-                  : 'project landscape'
+                item.layout === 'portrait' ? 'project' : 'project landscape'
               }
             >
-              <Link to={`/works/${collectionItem.slug.current}`}>
-                <div className="project-image-wrapper collection">
-                  {imageSrc && (
-                    <img
-                      src={imageSrc}
-                      alt={collectionItem.description || collectionItem.title}
-                    />
-                  )}
-                </div>
-              </Link>
-              <p className="project-caption">{collectionItem.title}</p>
+              {isCollectionDetail ? (
+                image
+              ) : (
+                <Link to={`/works/${item.slug.current}`}>{image}</Link>
+              )}
+              <p className="project-caption">
+                {isCollectionDetail ? item.caption : item.title}
+              </p>
             </div>
           );
         })}
