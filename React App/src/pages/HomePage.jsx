@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { ScrollRevealText, WordRevealText, LetterRevealText } from "../components/ScrollRevealText";
 import homepageImage1 from "../assets/homepage-1.jpeg";
 import homepageImage2 from "../assets/homepage-2.jpeg";
 import innisfreeLogo from "../assets/innisfree.svg";
@@ -189,26 +190,25 @@ export default function HomePage() {
                     <p>I do this, this, and this. This text is a placeholder for how the real thing will look when fully implemented.</p>
                 </div>
             </div>
+
+            <ScrollRevealText />
+
+            <WordRevealText />
+
+            <LetterRevealText />
+
             <div id="client-section">
                 <h1 className="homepage-header" id="client-header">Brands I Have Worked With</h1>
                 <div className="brand-row" ref={brandRowRef}>
                     <div className="brand-item"><img src={innisfreeLogo} alt="Brand Logo" /></div>
                     <div className="brand-item"><img src={kimiyuLogo} alt="Brand Logo" /></div>
                     <div className="brand-item"><img src={supergrainLogo} alt="Brand Logo" /></div>
-                    <div className="brand-item"><img src={netflixLogo} alt="Brand Logo" /></div>
-                    <div className="brand-item"><img src={ikeaLogo} alt="Brand Logo" /></div>
-                    <div className="brand-item"><img src={appleLogo} alt="Brand Logo" /></div>
+                    {/* <div className="brand-item"><img src={netflixLogo} alt="Brand Logo" /></div> */}
+                    {/* <div className="brand-item"><img src={ikeaLogo} alt="Brand Logo" /></div> */}
+                    {/* <div className="brand-item"><img src={appleLogo} alt="Brand Logo" /></div> */}
                     <div className="brand-item"><img src={resolLogo} alt="Brand Logo" /></div>
-                    <div className="brand-item"><img src={vogueLogo} alt="Brand Logo" /></div>
+                    {/* <div className="brand-item"><img src={vogueLogo} alt="Brand Logo" /></div> */}
                 </div>
-            </div>
-            <div id="latest-work-section">
-                <h1 className="homepage-header">Check Out My Latest Work</h1>
-                <p>Placeholder text</p>
-            </div>
-            <div id="reviews-section">
-                <h1 className="homepage-header">Reviews</h1>
-                <p>Placeholder text  --- User A</p>
             </div>
         </div>
     )

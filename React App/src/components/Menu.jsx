@@ -12,9 +12,9 @@ export default function Menu({ isOpen, isClosing, onClose }) {
         </button>
 
         <nav className="mobile-app-nav">
-          <NavLink to="/home" onClick={onClose}>Home</NavLink>
-          <NavLink to="/works" onClick={onClose}>My Works</NavLink>
-          <NavLink to="/about" onClick={onClose}>About Me</NavLink>
+          <NavLink to="/home" onClick={onClose}>HOME</NavLink>
+          <NavLink to="/works" onClick={onClose}>MY WORKS</NavLink>
+          <NavLink to="/contact" onClick={onClose}>CONTACT ME</NavLink>
         </nav>
 
         <div className="mobile-social-container">
